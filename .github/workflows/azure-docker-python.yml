@@ -22,25 +22,21 @@ name: Linux Container Node Workflow
 on: [push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - uses: azure/docker-login@v1
-      with:
-        login-server: applastregist.azurecr.io
-        username: ${{ secrets.REGISTRY_USERNAME }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
-
-    - run: |
-        docker build . -t applastregist.azurecr.io/myapp:monimage
-        docker push applastregist.azurecr.io/myapp:monimage
-
-  restart-container:
+  build_and_restart:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
+      - uses: azure/docker-login@v1
+        with:
+          login-server: applastregist.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - run: |
+          docker build . -t applastregist.azurecr.io/myapp:monimage
+          docker push applastregist.azurecr.io/myapp:monimage
+
       - name: Azure Login
         uses: azure/login@v1
         with:
@@ -49,3 +45,4 @@ jobs:
       - name: Restart Azure Container
         run: |
           az container restart --resource-group stack-tags-predictor_group --name instance-auto-maj
+
