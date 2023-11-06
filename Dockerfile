@@ -1,5 +1,5 @@
 # Choose our version of Python
-FROM python:3.11
+FROM python:3.9
 
 # Set up a working directory
 WORKDIR /code
