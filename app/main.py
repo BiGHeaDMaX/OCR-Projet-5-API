@@ -2,18 +2,21 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
-import uvicorn
-
+# Imports pour notre modèle de prédiction
 import pickle
+#import tensorflow_hub as hub
 
 import numpy as np
 
-# Instanciation de notre API 
+# Instanciation de notre API
 app = FastAPI()
 
 # Chargement du modèle choisi précédemment enregistré
 with open('KNeighborsClassifier_and_bin.pkl', 'rb') as fichier:
     model_and_bin = pickle.load(fichier)
+
+# Chargement du modèle USE pré-entraîné (s'il n'avait pas été chargé précédemment)
+# embed = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
 
 # Fonction de prédiction
 def tags_predict(document):
@@ -42,7 +45,7 @@ def tags_predict(document):
 ##################
 # Page d'accueil avec un formulaire pour entrer un document
 @app.get("/", response_class=HTMLResponse)
-def prediction_form():
+async def prediction_form():
     """
     - Page d'accueil de l'interface web.
     - Entrez le texte de votre document dans le champs textuel,
@@ -83,7 +86,7 @@ def prediction_form():
 # Page de résultats web #
 #########################
 @app.get("/predict_web", response_class=HTMLResponse)
-def prediction_result_web(document: str):
+async def prediction_result_web(document: str):
     """
     - Page de résultat de la prédiction sur l'interface web.
     - Indique les tags prédits par le modèle en fonction
@@ -122,7 +125,7 @@ def prediction_result_web(document: str):
 # Renvoi des résultats en STR #
 ###############################
 @app.get("/predict")
-def prediction_result(document):
+async def prediction_result(document):
 #async def prediction_result(document: str):
     """
     - Fonction de prédiction qui retourne uniquement
