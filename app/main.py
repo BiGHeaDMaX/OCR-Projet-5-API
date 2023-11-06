@@ -1,5 +1,7 @@
 # Imports spécifiques à l'API
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+
 import uvicorn
 
 import pickle
