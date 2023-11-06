@@ -10,7 +10,7 @@ app = FastAPI()
 ##################
 @app.get("/")
 def prediction_form():
-    return "Bonjour new 2"
+    return "Bonjour new 3"
 
 if __name__ == '__main__':
     uvicorn.run('main:app')
