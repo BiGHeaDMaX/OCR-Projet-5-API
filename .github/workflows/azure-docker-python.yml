@@ -26,7 +26,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          lfs: true
       - uses: azure/docker-login@v1
         with:
           login-server: applastregist.azurecr.io
@@ -36,6 +37,8 @@ jobs:
       - run: |
           docker build . -t applastregist.azurecr.io/myapp:monimage
           docker push applastregist.azurecr.io/myapp:monimage
+        with:
+          context: .
 
       - name: Azure Login
         uses: azure/login@v1
