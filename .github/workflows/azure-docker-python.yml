@@ -28,6 +28,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
+      - run: git lfs pull
       - uses: azure/docker-login@v1
         with:
           login-server: applastregist.azurecr.io
