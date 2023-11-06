@@ -45,7 +45,7 @@ def tags_predict(document):
 ##################
 # Page d'accueil avec un formulaire pour entrer un document
 @app.get("/", response_class=HTMLResponse)
-async def prediction_form():
+def prediction_form():
     """
     - Page d'accueil de l'interface web.
     - Entrez le texte de votre document dans le champs textuel,
@@ -86,7 +86,7 @@ async def prediction_form():
 # Page de résultats web #
 #########################
 @app.get("/predict_web", response_class=HTMLResponse)
-async def prediction_result_web(document: str):
+def prediction_result_web(document: str):
     """
     - Page de résultat de la prédiction sur l'interface web.
     - Indique les tags prédits par le modèle en fonction
@@ -125,7 +125,7 @@ async def prediction_result_web(document: str):
 # Renvoi des résultats en STR #
 ###############################
 @app.get("/predict")
-async def prediction_result(document):
+def prediction_result(document):
 #async def prediction_result(document: str):
     """
     - Fonction de prédiction qui retourne uniquement
