@@ -38,8 +38,14 @@ jobs:
         docker build . -t applastregist.azurecr.io/myapp:monimage
         docker push applastregist.azurecr.io/myapp:monimage
 
-#    - uses: azure/webapps-deploy@v2
-#      with:
-#        app-name: 'stack-tags-predictor'
-#        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-#        images: 'applastregist.azurecr.io/myapp:${{ github.sha }}'
+  restart-container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Restart Azure Container
+        run: |
+          az container restart --resource-group stack-tags-predictor_group --name instance-auto-maj
