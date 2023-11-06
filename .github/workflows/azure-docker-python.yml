@@ -1,49 +1,43 @@
-# This workflow will build and push a Python application to an Azure Web App when a commit is pushed to your default branch.
-#
-# This workflow assumes you have already created the target Azure App Service web app.
-# For instructions see https://docs.microsoft.com/en-us/azure/app-service/quickstart-python?tabs=bash&pivots=python-framework-flask
-#
-# To configure this workflow:
-#
-# 1. Download the Publish Profile for your Azure Web App. You can download this file from the Overview page of your Web App in the Azure Portal.
-#    For more information: https://docs.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=applevel#generate-deployment-credentials
-#
-# 2. Create a secret in your repository named AZURE_WEBAPP_PUBLISH_PROFILE, paste the publish profile contents as the value of the secret.
-#    For instructions on obtaining the publish profile see: https://docs.microsoft.com/azure/app-service/deploy-github-actions#configure-the-github-secret
-#
-# 3. Change the value for the AZURE_WEBAPP_NAME. Optionally, change the PYTHON_VERSION environment variables below.
-#
-# For more information on GitHub Actions for Azure: https://github.com/Azure/Actions
-# For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
+# Workflow pour dockeriser l'application
+# et l'envoyer dans un registre de conteneur Azure
+# puis redémarrer l'instance de conteneur
 
-name: Linux Container Node Workflow
+name: Dockerisation et mise en production
 
-on: [push]
+# Ce workflow se déclanchera en cas de push
+# sur la branche master
+on:
+  push:
+    branches: [ "master" ]
 
 jobs:
   build_and_restart:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        # Bien mettre lfs: true si on utilise Git large file storage
+        # sinon ça va copier le pointeur au lieu du fichier
         with:
           lfs: true
+      # Toujours dans le cas où on utilise git lfs
       - run: git lfs pull
+      # Connexion au registre de conteneur
       - uses: azure/docker-login@v1
         with:
           login-server: applastregist.azurecr.io
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-
+      # Création du conteneur et push dans le registre
       - run: |
           docker build . -t applastregist.azurecr.io/myapp:monimage
           docker push applastregist.azurecr.io/myapp:monimage
-
+      # Connexion à Azure pour pouvoir lancer la commande de redémarrage
       - name: Azure Login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-
+      # Redémarrage de l'instance de conteneur
+      # pour prendre en compte la version nouvellement crée
       - name: Restart Azure Container
         run: |
           az container restart --resource-group stack-tags-predictor_group --name instance-auto-maj
