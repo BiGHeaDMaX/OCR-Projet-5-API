@@ -7,7 +7,7 @@ WORKDIR /code
 # Copy just the requirements into the working directory so it gets cached by itself
 COPY ./requirements.txt /code/requirements.txt
 
-# COPY ./KNeighborsClassifier_and_bin.pkl /code/KNeighborsClassifier_and_bin.pkl
+COPY ./KNeighborsClassifier_and_bin.pkl /code/KNeighborsClassifier_and_bin.pkl
 
 # Install the dependencies from the requirements file
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
