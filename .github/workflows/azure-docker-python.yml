@@ -37,8 +37,6 @@ jobs:
       - run: |
           docker build . -t applastregist.azurecr.io/myapp:monimage
           docker push applastregist.azurecr.io/myapp:monimage
-        with:
-          context: .
 
       - name: Azure Login
         uses: azure/login@v1
