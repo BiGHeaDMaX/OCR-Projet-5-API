@@ -19,7 +19,7 @@ with open('KNeighborsClassifier_and_bin.pkl', 'rb') as fichier:
 # embed = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
 
 # Fonction de prédiction
-"""def tags_predict(document):
+def tags_predict(document):
 
     ddd = document.replace('[', '').replace(']', '')
     ddd = ddd.split()
@@ -38,7 +38,7 @@ with open('KNeighborsClassifier_and_bin.pkl', 'rb') as fichier:
     prediction = model_and_bin[0].predict([ddd])
     tags = ', '.join(model_and_bin[1].inverse_transform(prediction)[0])
 
-    return tags"""
+    return tags
 
 ##################
 # Page d'accueil #
