@@ -10,7 +10,7 @@ app = FastAPI()
 ##################
 @app.get("/")
 async def prediction_form():
-    return "Bonjour"
+    return "Bonjour new"
 
 
 #if __name__ == "__main__":
