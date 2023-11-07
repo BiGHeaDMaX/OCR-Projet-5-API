@@ -21,8 +21,12 @@ app = FastAPI()
 ##################################################
 
 # Contient le modèle KNN et le MultiLabelBinarizer
-with open('KNeighborsClassifier_and_bin.pkl', 'rb') as fichier:
-    model_and_bin = pickle.load(fichier)
+# Je passe ici par une fonction, afin de permettre les tests unitaires
+# avec pytest, qui gère mal les imports de fichiers pickle
+def load_model():
+    with open('KNeighborsClassifier_and_bin.pkl', 'rb') as fichier:
+        model_and_bin = pickle.load(fichier)
+    return model_and_bin
 
 ##########################
 # Fonction de prédiction #
@@ -35,6 +39,8 @@ def tags_predict(document):
     doc = document.replace('[', '').replace(']', '')
     doc = doc.split()
     doc = np.array([float(item) for item in doc])
+
+    model_and_bin = load_model()
 
     # Prédiction sur les données reçues
     prediction = model_and_bin[0].predict([doc])
