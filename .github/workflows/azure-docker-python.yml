@@ -2,7 +2,7 @@
 # et l'envoyer dans un registre de conteneur Azure
 # puis redémarrer l'instance de conteneur
 
-name: Dockerisation et mise en production
+name: Test, dockerisation et mise en production
 
 # Ce workflow se déclanchera en cas de push
 # sur la branche master
@@ -29,9 +29,11 @@ jobs:
           pip install -r ./app/requirements_test.txt
 
       - name: Run tests with pytest
+        # Lancement de pytest et message d'erreur si un des tests n'est pas concluant
         run: |
-          pytest ./app/test_main.py
-        continue-on-error: true
+          pytest ./app/test_main.py || (echo Le test n'est pas concluant, arrêt du workflow.)
+        # Si un des tests n'est pas concluant, arrêter le workflow
+        continue-on-error: false
 
   #build_and_restart:
   #  runs-on: ubuntu-latest
