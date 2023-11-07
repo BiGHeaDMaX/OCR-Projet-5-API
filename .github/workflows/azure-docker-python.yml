@@ -11,34 +11,56 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build_and_restart:
+
+  tests_unitaires:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r app/requirements_test.txt
+
+      - name: Run tests with pytest
+        run: |
+          cd app
+          pytest
+
+  #build_and_restart:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v4
         # Bien mettre lfs: true si on utilise Git large file storage
         # sinon ça va copier le pointeur au lieu du fichier
-        with:
-          lfs: true
+  #      with:
+  #        lfs: true
       # Toujours dans le cas où on utilise git lfs
-      - run: git lfs pull
+  #    - run: git lfs pull
       # Connexion au registre de conteneur
-      - uses: azure/docker-login@v1
-        with:
-          login-server: applastregist.azurecr.io
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+  #    - uses: azure/docker-login@v1
+  #      with:
+  #        login-server: applastregist.azurecr.io
+  #        username: ${{ secrets.REGISTRY_USERNAME }}
+  #        password: ${{ secrets.REGISTRY_PASSWORD }}
       # Création du conteneur et push dans le registre
-      - run: |
+  #    - run: |
           docker build . -t applastregist.azurecr.io/myapp:monimage
           docker push applastregist.azurecr.io/myapp:monimage
       # Connexion à Azure pour pouvoir lancer la commande de redémarrage
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+  #    - name: Azure Login
+  #      uses: azure/login@v1
+  #      with:
+  #        creds: ${{ secrets.AZURE_CREDENTIALS }}
       # Redémarrage de l'instance de conteneur
       # pour prendre en compte la version nouvellement crée
-      - name: Restart Azure Container
-        run: |
-          az container restart --resource-group stack-tags-predictor_group --name instance-auto-maj
+  #    - name: Restart Azure Container
+  #      run: |
+  #        az container restart --resource-group stack-tags-predictor_group --name instance-auto-maj
 
