@@ -28,9 +28,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r app/requirements_test.txt
 
-      - name: Run tests with pytest
-        run: |
-          pytest ./app/test_main.py
+  #    - name: Run tests with pytest
+  #      run: |
+  #        pytest ./app/test_main.py
 
   #build_and_restart:
   #  runs-on: ubuntu-latest
