@@ -52,34 +52,37 @@ def prediction_form():
       puis cliquez sur le bouton "Prédiction".
     """
     return """
-                <html>
-                <body style="background-color: #000D4B;">
-                    &nbsp;
-                    &nbsp;
-                    <h1 style="text-align: center;">
-                        <span style="font-size:72px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">
-                        <strong>PR&Eacute;DICTION DE TAGS</strong>
-                        </span>
-                    </h1>
-                    <p style="text-align: center;">
-                        <span style="font-size:22px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">
-                        <em>Entrez le texte de votre document dans le formulaire et cliquez sur le bouton &quot;Pr&eacute;diction&quot; :</em>
-                        </span>
-                    </p>
-                    <form action="/predict_web" method="get">
-                        <p align="center">
-                            <textarea id="document" name="document" rows="20" cols="120"></textarea>
-                            <br><br>
-                            <input type="submit" value="Prédiction" style="width: 120px; height: 60px; font-size: 20px; background-color: #000D4B; color: #FFFFFF;">
-                        </p>
-                    </form>
-                    <p style="text-align: center;">
-                        <span style="font-size:22px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">
-                            <a href="/docs" style="color:#FFFFFF">Consultez la documentation</a>
-                        </span>
-                    </p>
-                </body>
-                </html>
+              <html>
+                 <head>
+                     <title>Prédiction de tags</title>
+                 </head>
+                 <body style="background-color: #000D4B;">
+                     &nbsp;
+                     &nbsp;
+                     <h1 style="text-align: center;">
+                         <span style="font-size:72px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">
+                         <strong>PR&Eacute;DICTION DE TAGS</strong>
+                         </span>
+                     </h1>
+                     <p style="text-align: center;">
+                         <span style="font-size:22px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">
+                         <em>Entrez le texte de votre document dans le formulaire et cliquez sur le bouton &quot;Pr&eacute;diction&quot; :</em>
+                         </span>
+                     </p>
+                     <form action="/predict_web" method="get">
+                         <p align="center">
+                             <textarea id="document" name="document" rows="20" cols="120"></textarea>
+                             <br><br>
+                             <input type="submit" value="Prédiction" style="width: 120px; height: 60px; font-size: 20px; background-color: #000D4B; color: #FFFFFF;">
+                         </p>
+                     </form>
+                     <p style="text-align: center;">
+                         <span style="font-size:22px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">
+                         <a href="/docs" style="color:#FFFFFF">Consultez la documentation</a>
+                         </span>
+                     </p>
+                 </body>
+              </html>
 """
 
 #########################
@@ -96,29 +99,32 @@ def prediction_result_web(document: str):
     """
     predicted_tags = tags_predict(document)
     return f"""
-                <html>
-                    <body style="background-color: #000D4B;">
-                        &nbsp;
-                        &nbsp;
-                        <h1 style="text-align: center;">
-                            <span style="font-size:72px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">
-                            <strong>R&Eacute;SULTAT DE LA PR&Eacute;DICTION</strong>
-                            </span>
-                        </h1>
-                        <p style="text-align: center;">
-                            <span style="font-size:32px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">Pour le texte suivant :<br><br></span>
-                            <span style="font-size:22px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;"><em>{document}</em></span>
-                        </p>
-                        <h2 style="text-align: center;">
-                            <span style="font-size:48px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">Tags pr&eacute;dits : {predicted_tags}</span>
-                        </h2>
-                        <form action="/" method="get">
-                            <p align="center">
-                                <button type="submit" style="width: 200px; height: 60px; font-size: 20px; background-color: #000D4B; color: #FFFFFF;">Faire une autre pr&eacute;diction</button>
-                            </p>
-                        </form>
-                    </body>
-                </html>
+               <html>
+                   <head>
+                       <title>Prédiction de tags</title>
+                   </head>
+                   <body style="background-color: #000D4B;">
+                       &nbsp;
+                       &nbsp;
+                       <h1 style="text-align: center;">
+                           <span style="font-size:72px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">
+                           <strong>R&Eacute;SULTAT DE LA PR&Eacute;DICTION</strong>
+                           </span>
+                       </h1>
+                       <p style="text-align: center;">
+                           <span style="font-size:32px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">Pour le texte suivant :<br><br></span>
+                           <span style="font-size:22px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;"><em>{document}</em></span>
+                       </p>
+                       <h2 style="text-align: center;">
+                           <span style="font-size:48px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">Tags pr&eacute;dits : {predicted_tags}</span>
+                       </h2>
+                       <form action="/" method="get">
+                           <p align="center">
+                               <button type="submit" style="width: 200px; height: 60px; font-size: 20px; background-color: #000D4B; color: #FFFFFF;">Faire une autre pr&eacute;diction</button>
+                           </p>
+                       </form>
+                   </body>
+               </html>
 """
 
 ###############################
@@ -137,6 +143,6 @@ def prediction_result(document):
 
 # Si le fichier est exécuté en tant que
 # programme principal et non importé
-if __name__ == '__main__':
-    uvicorn.run('main:app')
+#if __name__ == '__main__':
+#    uvicorn.run('main:app')
 
