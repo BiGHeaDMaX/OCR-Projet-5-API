@@ -28,18 +28,25 @@ def load_model():
         model_and_bin = pickle.load(fichier)
     return model_and_bin
 
+
+def array_converter(document):
+    # Conversion des données réçue en arrray
+    # qui pourra alors être passé dans le modèle
+    doc = document.replace('[', '').replace(']', '')
+    doc = doc.split()
+    doc = np.array([float(item) for item in doc])
+    return doc
+
 ##########################
 # Fonction de prédiction #
 ##########################
 
 def tags_predict(document):
 
-    # Conversion des données réçue en arrray
-    # qui pourra alors être passé dans le modèle
-    doc = document.replace('[', '').replace(']', '')
-    doc = doc.split()
-    doc = np.array([float(item) for item in doc])
+    # Conversion des données reçues sous forme d'array
+    doc = array_converter(document)
 
+    # Chargement du modèle depuis le fichier pickle
     model_and_bin = load_model()
 
     # Prédiction sur les données reçues
@@ -110,7 +117,7 @@ def prediction_form():
 # Pour la version dans le cloud, pour des raisons de limitation techniques,
 # le document devra être encodé avec USE en local avant d'être transmis.
 @app.get("/predict_web", response_class=HTMLResponse)
-def prediction_result_web(document: str):
+def prediction_result_web(document):
     """
     - Page de résultat de la prédiction sur l'interface web.
     - Indique les tags prédits par le modèle en fonction
