@@ -35,6 +35,8 @@ jobs:
           pytest ./app/test_main.py || (echo "Le test n'est pas concluant, arrêt du workflow." && exit 1)
                 
   build_push_and_restart:
+    # Needs : ce job ne doit être lancé qu'à l'issue des tests unitaires
+    needs: tests_unitaires
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
