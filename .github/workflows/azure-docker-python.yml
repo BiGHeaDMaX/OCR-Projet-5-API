@@ -30,8 +30,7 @@ jobs:
 
       - name: Run tests with pytest
         run: |
-          cd ./app
-          pytest
+          pytest ./app/test_main.py
 
   #build_and_restart:
   #  runs-on: ubuntu-latest
