@@ -35,7 +35,7 @@ def array_converter(document):
     doc = document.replace('[', '').replace(']', '')
     doc = doc.split()
     doc = np.array([float(item) for item in doc])
-    return doc
+    return "couccou"#doc
 
 ##########################
 # Fonction de prédiction #
