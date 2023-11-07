@@ -31,10 +31,9 @@ jobs:
       - name: Run tests with pytest
         # Lancement de pytest et message d'erreur si un des tests n'est pas concluant
         run: |
-          pytest ./app/test_main.py || (echo "Le test n'est pas concluant, arrêt du workflow.")
+          pytest ./app/test_main.py || (echo "Le test n'est pas concluant, arrêt du workflow." && exit 1)
         # Si un des tests n'est pas concluant, arrêter le workflow
-        continue-on-error: false
-
+        
   #build_push_and_restart:
   #  runs-on: ubuntu-latest
   #  steps:
