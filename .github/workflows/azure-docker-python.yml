@@ -50,8 +50,8 @@ jobs:
   #        password: ${{ secrets.REGISTRY_PASSWORD }}
       # Création du conteneur et push dans le registre
   #    - run: |
-          docker build . -t applastregist.azurecr.io/myapp:monimage
-          docker push applastregist.azurecr.io/myapp:monimage
+  #        docker build . -t applastregist.azurecr.io/myapp:monimage
+  #        docker push applastregist.azurecr.io/myapp:monimage
       # Connexion à Azure pour pouvoir lancer la commande de redémarrage
   #    - name: Azure Login
   #      uses: azure/login@v1
