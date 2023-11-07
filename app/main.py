@@ -4,7 +4,7 @@ from fastapi.responses import HTMLResponse
 
 # Imports pour notre modèle de prédiction
 import pickle
-#import tensorflow_hub as hub
+import tensorflow_hub as hub
 
 import numpy as np
 
@@ -16,7 +16,7 @@ with open('KNeighborsClassifier_and_bin.pkl', 'rb') as fichier:
     model_and_bin = pickle.load(fichier)
 
 # Chargement du modèle USE pré-entraîné (s'il n'avait pas été chargé précédemment)
-# embed = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
+embed = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
 
 # Fonction de prédiction
 def tags_predict(document):

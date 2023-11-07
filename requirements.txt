@@ -2,3 +2,5 @@ fastapi==0.103.1
 uvicorn==0.23.2
 scikit-learn==1.2.2
 numpy
+tensorflow==2.14.0
+tensorflow-hub==0.14.0
