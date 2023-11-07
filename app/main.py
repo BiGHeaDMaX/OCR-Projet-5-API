@@ -88,6 +88,11 @@ def prediction_form():
                          <a href="/docs" style="color:#FFFFFF">Consultez la documentation</a>
                          </span>
                      </p>
+                     <p style="text-align: center;">
+                         <span style="font-size:22px; color:#FFFFFF; font-family:arial,helvetica,sans-serif;">
+                         <em>La version en ligne de l'API n&eacute;c&eacute;ssite de fournir le document en version préencodée avec USE.</em>
+                         </span>
+                     </p>
                  </body>
               </html>
 """
