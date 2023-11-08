@@ -6,13 +6,13 @@ Pour cette version dans le cloud, pour des raisons de limitations techniques, le
 Le sentence embedding avec USE est si performant qu'il permet de capter le sens des documents dans plusieurs langues, sans prétraitements préalables. Ce qui fait que même si notre modèle de prédiction a été entraîné sur des documents en Anglais (préalablement encodés avec USE), il fonctionne également avec des documents dans d'autres langues.
 
 # **Contenu de ce repository**
-- Dockerfile : utilisé pour la création d'une image docker
-- KNeighborsClassifier_and_bin.pkl : modèle préentraîné (stocké via Git LFS)
-- requirements.txt : dépendances pour faire fonctionner l'API
-- app/main.py : code de l'API
-- app/requirements_test.txt : dépendances pour les tests unitaires
-- app/test_main.py : code des tests unitaires avec pytest
-- .github/workflows/azure-docker-python.yml : workflow déclenché lors d'un push sur la branche master
+- **Dockerfile** : utilisé pour la création d'une image docker
+- **KNeighborsClassifier_and_bin.pkl** : modèle préentraîné (stocké via Git LFS)
+- **requirements.txt** : dépendances pour faire fonctionner l'API
+- **app/main.py** : code de l'API
+- **app/requirements_test.txt** : dépendances pour les tests unitaires
+- **app/test_main.py** : code des tests unitaires avec pytest
+- **.github/workflows/azure-docker-python.yml** : workflow déclenché lors d'un push sur la branche master
 
 # **Workflow**
 Lors d'un push sur la branche master, un workflow GitHub Actions est déclenché et réalise les actions suivantes : 
