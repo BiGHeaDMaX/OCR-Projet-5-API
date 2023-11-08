@@ -9,6 +9,9 @@ name: Tests, dockerisation et mise en production
 on:
   push:
     branches: [ "master" ]
+    # Fichiers dont le push ne déclenchera pas le workflow
+    paths-ignore:
+      - 'readme.md'
 
 jobs:
 
