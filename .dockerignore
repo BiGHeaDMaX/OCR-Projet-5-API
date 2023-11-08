@@ -1,0 +1,4 @@
+# Ne pas utiliser les fichiers des tests unitaires
+# lors de la construction de l'image docker
+app/test_main.py
+app/requirements_test.txt
