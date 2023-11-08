@@ -20,9 +20,6 @@ app = FastAPI()
 # Chargement du modèle de prédiction préentraîné #
 ##################################################
 
-import tensorflow_hub as hub
-embed = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
-
 # Contient le modèle KNN et le MultiLabelBinarizer
 # Je passe ici par une fonction, afin de permettre les tests unitaires
 # avec pytest, qui gère mal les imports de fichiers pickle

@@ -12,31 +12,31 @@ on:
 
 jobs:
 
-#  tests_unitaires:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v4
-#
-#      - name: Set up de Python
-#        uses: actions/setup-python@v4
-#        with:
-#          python-version: 3.11
+  tests_unitaires:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#      - name: Installation des dépendances
-#        run: |
-#          python -m pip install --upgrade pip
-#          pip install -r ./app/requirements_test.txt
+      - name: Set up de Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
 
-#      - name: Lancement des tests avec pytest
+      - name: Installation des dépendances
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ./app/requirements_test.txt
+
+      - name: Lancement des tests avec pytest
         # Lancement de pytest et message d'erreur si un des tests n'est pas concluant
         # Si un des tests n'est pas concluant, arrêter le workflow avec exit 1
-#        run: |
-#          pytest ./app/test_main.py || (echo "Le test n'est pas concluant, arrêt du workflow." && exit 1)
+        run: |
+          pytest ./app/test_main.py || (echo "Le test n'est pas concluant, arrêt du workflow." && exit 1)
                 
   build_push_and_restart:
     # Needs : ce job ne doit être lancé qu'à l'issue des tests unitaires
-#    needs: tests_unitaires
+    needs: tests_unitaires
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
