@@ -16,7 +16,7 @@ Le sentence embedding avec USE est si performant qu'il permet de capter le sens 
 
 # **Workflow**
 Lors d'un push sur la branche master, un workflow GitHub Actions est déclenché et réalise les actions suivantes : 
-- Test unitaires avec pytest. Si un des tests retourne une erreur, le workflow est stopé.
+- Test unitaires avec pytest. Si un des tests retourne une erreur, le workflow est stoppé.
 - Si tous les tests sont passés avec succès, une image docker est crée.
 - L'image docker est poussée sur un registre de conteneur Azure.
 - L'instance de conteneur Azure qui utilise l'image docker est redémarrée afin de prendre en compte les changements.
