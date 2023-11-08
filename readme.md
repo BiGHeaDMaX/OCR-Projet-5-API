@@ -20,7 +20,8 @@ Lors d'un push sur la branche master, un workflow GitHub Actions est déclenché
 # **Repository associé**
 Tout le travail de prétraitement des données et de recherche des meilleurs modèles se trouve dans [ce repository](https://github.com/BiGHeaDMaX/OCR-Projet-5).
 
+<br><br>
 > **Note**<br>
-Pour cette version dans le cloud, pour des raisons de limitations techniques, le document devra être encodé avec [USE](https://tfhub.dev/google/universal-sentence-encoder/4") en local avant d'être transmis à l'API. En effet le modèle de sentence embedding préentraîné USE nécessite plus de RAM que celle disponible dans la solution de cloud utilisée. Sans cette limitation technique, il est bien sûr tout à fait possible d'inclure cet encodage dans l'API, que nous pourrions alors directement requêter avec les documents bruts.
+Pour cette version dans le cloud, pour des raisons de limitations techniques, le document devra être encodé avec [USE](https://tfhub.dev/google/universal-sentence-encoder/4) en local avant d'être transmis à l'API. En effet le modèle de sentence embedding préentraîné USE nécessite plus de RAM que celle disponible dans la solution de cloud utilisée. Sans cette limitation technique, il est bien sûr tout à fait possible d'inclure cet encodage dans l'API, que nous pourrions alors directement requêter avec les documents bruts.
 <br><br>
 Le sentence embedding avec USE est si performant qu'il permet de capter le sens des documents dans plusieurs langues, sans prétraitements préalables. Ce qui fait que même si notre modèle de prédiction a été entraîné sur des documents en Anglais (préalablement encodés avec USE), il fonctionne également avec des documents dans d'autres langues.
