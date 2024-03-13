@@ -23,3 +23,6 @@ Lors d'un push sur la branche master, un workflow GitHub Actions est déclenché
 
 # **Repository associé**
 Tout le travail de prétraitement des données et de recherche des meilleurs modèles se trouve dans [ce repository](https://github.com/BiGHeaDMaX/Suggestion-automatique-de-mots-cles).
+
+# **Article associé**
+Retrouvez l'article de présentation de ce projet [ici](https://bigheadmax.github.io/04-suggestion-mots-cles.html).
