@@ -22,4 +22,4 @@ Lors d'un push sur la branche master, un workflow GitHub Actions est déclenché
 - L'instance de conteneur Azure qui utilise l'image docker est redémarrée afin de prendre en compte les changements.
 
 # **Repository associé**
-Tout le travail de prétraitement des données et de recherche des meilleurs modèles se trouve dans [ce repository](https://github.com/BiGHeaDMaX/OCR-Projet-5).
+Tout le travail de prétraitement des données et de recherche des meilleurs modèles se trouve dans [ce repository](https://github.com/BiGHeaDMaX/Suggestion-automatique-de-mots-cles).
