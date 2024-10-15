@@ -1,4 +1,6 @@
 fastapi==0.109.1
 uvicorn==0.23.2
-scikit-learn==1.2.2
+# Je ne précise plus la version (1.2.2)
+# car sinon trop de notifs mail dependabot alert
+scikit-learn
 numpy
